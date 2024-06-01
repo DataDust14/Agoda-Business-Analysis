@@ -1,0 +1,48 @@
+Problem Statement 1: Find the average price of 5 star hotels in each continent corresponding to there country
+
+select hotel_name, continent, country, avg(price) 
+from hotels
+group by 1,2,3;
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Problem Statement 2: List top customer based upon there expenses.
+
+select customer_name, Total_expense 
+from customers
+order by 2 DESC
+Limit 5
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Problem Statement 3: Count number of bookings in each hotel
+
+select Hotel_name, count(Booking_id) as No_of_bookings,
+H.Price, H.Rating, H.Country
+from bookings B
+JOIN hotels H
+ON B.hotel_id = H.hotel_id
+group by 1,3,4,5
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+Problem Statement 4: Find total average generated with 5 star hotels in North America and Asia
+
+select hotel_name, avg(price), Country
+from hotels
+where continent IN ('North America', 'Europe') AND Rating = 5
+group by 1,3;
+ 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Problem statement 5: List coustmers with pending bookings
+
+SELECT customer_name, country_they_belong, Booking_status
+from customers C
+JOIN bookings B
+ON C.customer_id = B.customer_id
+where B.Booking_status = 'Pending';
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
