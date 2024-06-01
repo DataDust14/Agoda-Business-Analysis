@@ -1,0 +1,93 @@
+CREATE TABLE Hotels (
+    Hotel_id INT PRIMARY KEY,
+    Hotel_name VARCHAR(255) NOT NULL,
+    Price DECIMAL(10, 2) NOT NULL,
+    Country VARCHAR(255) NOT NULL,
+    Continent VARCHAR(255) NOT NULL,
+    Country_id INT NOT NULL
+);
+
+INSERT INTO Hotels (Hotel_id, Hotel_name, Price, Country, Continent, Country_id) VALUES
+(1, 'Hotel Paradise', 150.00, 'USA', 'North America', 101),
+(2, 'Royal Suites', 200.00, 'Canada', 'North America', 102),
+(3, 'Ocean View', 180.00, 'Mexico', 'North America', 103),
+(4, 'Mountain Resort', 220.00, 'Switzerland', 'Europe', 201),
+(5, 'City Central', 140.00, 'Germany', 'Europe', 202),
+(6, 'Beachside Inn', 130.00, 'Spain', 'Europe', 203),
+(7, 'Desert Oasis', 160.00, 'UAE', 'Asia', 301),
+(8, 'Urban Retreat', 170.00, 'India', 'Asia', 302),
+(9, 'Tropical Paradise', 210.00, 'Thailand', 'Asia', 303),
+(10, 'Safari Lodge', 190.00, 'Kenya', 'Africa', 401),
+(11, 'Rainforest Retreat', 175.00, 'Brazil', 'South America', 501),
+(12, 'City Lights Hotel', 250.00, 'Japan', 'Asia', 304),
+(13, 'Snowy Peaks', 180.00, 'Canada', 'North America', 102),
+(14, 'Historic Inn', 160.00, 'France', 'Europe', 204),
+(15, 'Luxury Stay', 300.00, 'UAE', 'Asia', 301),
+(16, 'Budget Lodge', 90.00, 'India', 'Asia', 302),
+(17, 'Coastal Getaway', 195.00, 'Australia', 'Australia', 601),
+(18, 'Cityscape Hotel', 220.00, 'Singapore', 'Asia', 305),
+(19, 'Mountain Cabin', 150.00, 'Norway', 'Europe', 205),
+(20, 'Seaside Hotel', 170.00, 'Philippines', 'Asia', 306);
+
+CREATE TABLE HotelRatings (
+    Hotel_id INT PRIMARY KEY,
+    Hotel_name VARCHAR(255) NOT NULL,
+    Price DECIMAL(10, 2) NOT NULL,
+    Five_star BOOLEAN DEFAULT FALSE,
+    Three_star BOOLEAN DEFAULT FALSE,
+    Two_star BOOLEAN DEFAULT FALSE,
+    FOREIGN KEY (Hotel_id) REFERENCES Hotels(Hotel_id)
+);
+
+INSERT INTO HotelRatings (Hotel_id, Hotel_name, Price, Five_star, Three_star, Two_star) VALUES
+(1, 'Hotel Paradise', 150.00, FALSE, TRUE, FALSE),
+(2, 'Royal Suites', 200.00, TRUE, FALSE, FALSE),
+(3, 'Ocean View', 180.00, FALSE, TRUE, FALSE),
+(4, 'Mountain Resort', 220.00, TRUE, FALSE, FALSE),
+(5, 'City Central', 140.00, FALSE, TRUE, FALSE),
+(6, 'Beachside Inn', 130.00, FALSE, TRUE, FALSE),
+(7, 'Desert Oasis', 160.00, FALSE, TRUE, FALSE),
+(8, 'Urban Retreat', 170.00, FALSE, TRUE, FALSE),
+(9, 'Tropical Paradise', 210.00, TRUE, FALSE, FALSE),
+(10, 'Safari Lodge', 190.00, TRUE, FALSE, FALSE),
+(11, 'Rainforest Retreat', 175.00, FALSE, TRUE, FALSE),
+(12, 'City Lights Hotel', 250.00, TRUE, FALSE, FALSE),
+(13, 'Snowy Peaks', 180.00, FALSE, TRUE, FALSE),
+(14, 'Historic Inn', 160.00, FALSE, TRUE, FALSE),
+(15, 'Luxury Stay', 300.00, TRUE, FALSE, FALSE),
+(16, 'Budget Lodge', 90.00, FALSE, FALSE, TRUE),
+(17, 'Coastal Getaway', 195.00, TRUE, FALSE, FALSE),
+(18, 'Cityscape Hotel', 220.00, TRUE, FALSE, FALSE),
+(19, 'Mountain Cabin', 150.00, FALSE, TRUE, FALSE),
+(20, 'Seaside Hotel', 170.00, FALSE, TRUE, FALSE);
+
+CREATE TABLE Customers (
+    Customer_id INT PRIMARY KEY,
+    Customer_name VARCHAR(255) NOT NULL,
+    Hotel_id INT,
+    Country_they_belong VARCHAR(255) NOT NULL,
+    Total_expense DECIMAL(10, 2) NOT NULL,
+    FOREIGN KEY (Hotel_id) REFERENCES Hotels(Hotel_id)
+);
+
+INSERT INTO Customers (Customer_id, Customer_name, Hotel_id, Country_they_belong, Total_expense) VALUES
+(1, 'John Doe', 1, 'USA', 450.00),
+(2, 'Jane Smith', 2, 'Canada', 600.00),
+(3, 'Carlos Hernandez', 3, 'Mexico', 540.00),
+(4, 'Anna Müller', 5, 'Germany', 420.00),
+(5, 'Samuel Lee', 7, 'UAE', 480.00),
+(6, 'Yuki Tanaka', 12, 'Japan', 750.00),
+(7, 'Aisha Khan', 8, 'India', 510.00),
+(8, 'David Brown', 10, 'Kenya', 570.00),
+(9, 'Liam Garcia', 17, 'Australia', 585.00),
+(10, 'Sophia Zhang', 18, 'Singapore', 660.00),
+(11, 'Emilia Rossi', 14, 'France', 480.00),
+(12, 'Robert Wilson', 19, 'Norway', 450.00),
+(13, 'Isabella Johnson', 16, 'India', 270.00),
+(14, 'Lucas Martinez', 6, 'Spain', 390.00),
+(15, 'Emma Davis', 4, 'Switzerland', 660.00),
+(16, 'Olivia Taylor', 20, 'Philippines', 510.00),
+(17, 'Mason White', 9, 'Thailand', 630.00),
+(18, 'Ethan Thomas', 11, 'Brazil', 525.00),
+(19, 'Ava Lopez', 15, 'UAE', 900.00),
+(20, 'James Gonzalez', 13, 'Canada', 540.00);
